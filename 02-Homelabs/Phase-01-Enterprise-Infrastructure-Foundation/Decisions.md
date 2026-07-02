@@ -134,3 +134,60 @@ Each milestone represents a stable infrastructure state that includes:
 This approach provides a reproducible deployment history and simplifies future troubleshooting.
 
 ---
+
+---
+
+# Decision 008
+
+## Enterprise Organizational Unit Design
+
+### Decision
+
+Separate users, computers, groups, service accounts, and administrative objects into dedicated Organizational Units.
+
+### Reason
+
+This structure improves scalability, simplifies Group Policy management, supports delegated administration, and aligns with enterprise Active Directory best practices.
+
+---
+
+# Decision 009
+
+## Enterprise User Naming Standard
+
+### Decision
+
+Use the following naming convention:
+
+Standard Accounts
+
+firstname.lastinitial
+
+Administrative Accounts
+
+firstname.lastinitial.admin
+
+### Reason
+
+This convention is concise, scalable, easily recognizable, and provides clear separation between standard and privileged identities.
+
+---
+
+# Decision 010
+
+## Enterprise Security Group Naming Standard
+
+### Decision
+
+Use Microsoft's recommended Global Security Group naming convention.
+
+Examples:
+
+- GG_IT_Administrators
+- GG_IT_Engineers
+- GG_Finance
+- GG_Human_Resources
+
+### Reason
+
+The naming convention clearly identifies the group scope and purpose while supporting Microsoft's AGDLP authorization model.

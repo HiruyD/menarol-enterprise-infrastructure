@@ -70,3 +70,74 @@ nslookup menarol.com
 nslookup google.com
 dcdiag
 ```
+
+---
+
+## Version 3.0 – Enterprise Active Directory Structure
+
+### Summary
+
+Designed and implemented the enterprise Organizational Unit (OU) structure for the Menarol Active Directory environment.
+
+### Work Completed
+
+- Created top-level Organizational Units.
+- Designed enterprise directory hierarchy.
+- Created departmental Organizational Units.
+- Created Computer Account Organizational Units.
+- Created Group Organizational Units.
+- Created Service Account Organizational Unit.
+- Created Disabled Objects Organizational Unit.
+- Created IT administrative Organizational Units.
+
+### Validation
+
+- Verified Organizational Unit hierarchy.
+- Confirmed enterprise directory structure.
+- Created the Version 3.0 VMware snapshot.
+
+---
+
+## Version 4.0 – Enterprise Identity Foundation
+
+### Summary
+
+Implemented the initial enterprise identity model using dedicated standard and administrative user accounts.
+
+### Work Completed
+
+- Established enterprise user naming standards.
+- Created the standard user account (**hiruy.d**).
+- Created the administrative user account (**hiruy.d.admin**).
+- Organized user accounts within the enterprise IT structure.
+
+### Validation
+
+- Verified user creation.
+- Verified Organizational Unit placement.
+- Verified account properties.
+- Created the Version 4.0 VMware snapshot.
+
+---
+
+## Version 5.0 – Enterprise Authorization Foundation
+
+### Summary
+
+Implemented the initial enterprise authorization model using Microsoft Global Security Groups.
+
+### Work Completed
+
+- Created the Global Security Groups Organizational Unit structure.
+- Created enterprise Global Security Groups.
+- Implemented enterprise security group naming standards.
+- Added **hiruy.d** to **GG_IT_Engineers**.
+- Added **hiruy.d.admin** to **GG_IT_Administrators**.
+- Established the foundation for role-based authorization.
+
+### Validation
+
+- Verified all Global Security Groups.
+- Verified group membership assignments.
+- Confirmed Active Directory structure integrity.
+- Created the Version 5.0 VMware snapshot.

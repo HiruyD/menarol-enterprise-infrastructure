@@ -89,3 +89,39 @@ Each completed milestone should include:
 - Git commit
 
 This creates a repeatable deployment history and makes troubleshooting significantly easier as the environment grows.
+
+---
+
+# Lesson 007
+
+## Organizational Units Should Reflect Administration
+
+Organizational Units should be designed around administrative boundaries and Group Policy requirements rather than simply mirroring departments.
+
+---
+
+# Lesson 008
+
+## Separate Standard and Administrative Accounts
+
+Administrative activities should always be performed using dedicated privileged accounts instead of everyday user accounts.
+
+Separating privileged identities reduces risk and aligns with enterprise security best practices.
+
+---
+
+# Lesson 009
+
+## Use Security Groups Instead of Direct Permissions
+
+Permissions should be assigned to security groups rather than individual user accounts.
+
+This simplifies administration, improves scalability, and supports Microsoft's AGDLP authorization model.
+
+---
+
+# Lesson 010
+
+## Build the Foundation Before Expanding
+
+Establishing enterprise standards for Organizational Units, naming conventions, identities, and security groups before deploying additional systems creates a scalable infrastructure that is easier to manage as the environment grows.
