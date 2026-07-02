@@ -30,51 +30,61 @@ This phase concludes with the deployment of the first Active Directory Domain Co
 - Validate the deployment using `dcdiag`
 - Create the Version 2.0 snapshot
 
----
+## Version 3.0 – Enterprise Active Directory Structure
 
-## Environment
+### Objectives
 
-| Component        | Value                                   |
-| ---------------- | --------------------------------------- |
-| Hypervisor       | VMware Workstation 17 Pro               |
-| Operating System | Windows Server 2022 Standard Evaluation |
-| Server Name      | MENAROL-SRV01                           |
-| Forest           | menarol.com                             |
-| Domain           | menarol.com                             |
-| NetBIOS          | MENAROL                                 |
-
----
-
-## Deliverables
-
-### Version 1.0
-
-- Windows Server 2022 baseline
-- VMware Tools installed
-- Initial server configuration completed
-
-### Version 2.0
-
-- Active Directory Domain Services deployed
-- DNS Server deployed
-- First Domain Controller operational
-- Forest created
-- Domain health verified
+- Design the enterprise Organizational Unit hierarchy.
+- Create departmental Organizational Units.
+- Create Computer Account Organizational Units.
+- Create Group Organizational Units.
+- Implement enterprise Active Directory standards.
+- Validate the enterprise directory structure.
+- Create the Version 3.0 snapshot.
 
 ---
 
-## Validation
+## Version 4.0 – Enterprise Identity Foundation
 
-The deployment was validated using:
+### Objectives
 
-- `hostname`
-- `whoami`
-- `ipconfig /all`
-- `nslookup`
-- `dcdiag`
+- Establish enterprise user naming standards.
+- Create standard user accounts.
+- Create administrative user accounts.
+- Organize identities within the enterprise Organizational Unit structure.
+- Validate enterprise identities.
+- Create the Version 4.0 snapshot.
+
+---
+
+## Version 5.0 – Enterprise Authorization Foundation
+
+### Objectives
+
+- Design the enterprise authorization model.
+- Create Global Security Groups.
+- Implement enterprise security group naming standards.
+- Assign initial users to Global Security Groups.
+- Validate enterprise authorization.
+- Create the Version 5.0 snapshot.
+
+---
+
+## Current Status
+
+### Completed
+
+- Windows Server 2022 deployed.
+- Active Directory Domain Services installed.
+- DNS Server configured.
+- Enterprise Organizational Unit hierarchy implemented.
+- Enterprise user identities created.
+- Enterprise Global Security Groups implemented.
 
 ---
 
 ## Next Phase
 
-Phase 02 will focus on designing the enterprise Active Directory structure, including Organizational Units (OUs), security groups, administrative standards, and identity management.
+Phase 02 will begin Enterprise Endpoint Integration.
+
+The first Windows 11 Enterprise workstation will be deployed, joined to the **menarol.com** domain, validated, and prepared for centralized Group Policy management.
