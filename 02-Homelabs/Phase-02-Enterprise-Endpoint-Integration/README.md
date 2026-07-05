@@ -40,18 +40,45 @@ Using a Golden Image ensures consistency, repeatability, and simplified lifecycl
 
 Current Version
 
-Version 1.0 – Windows 11 Golden Image
+Version 2.0 – Enterprise Domain Workstation
 
 ---
 
 # Next Milestone
 
-## Version 2.0 – Enterprise Workstation Baseline
+## Version 3.0 – Enterprise Group Policy Foundation
 
 Objectives
 
-- Install VMware Tools.
-- Configure Windows Update.
-- Verify regional settings and time zone.
-- Apply enterprise workstation baseline configuration.
-- Prepare the Golden Image for cloning.
+- Design the enterprise Group Policy strategy.
+- Create baseline Group Policy Objects (GPOs).
+- Link GPOs to the appropriate Organizational Units.
+- Validate Group Policy application on MENAROL-WKS01.
+- Document the enterprise Group Policy baseline.
+
+---
+
+# Version 2.0 – Enterprise Domain Workstation
+
+## Objectives
+
+- Clone the Windows 11 Golden Image.
+- Deploy the production workstation.
+- Configure Active Directory DNS.
+- Join the workstation to the menarol.com domain.
+- Validate domain authentication.
+- Move the workstation into the Workstations Organizational Unit.
+- Create the Version 2.0 VMware snapshot.
+
+---
+
+## Completed
+
+- Created the production workstation by cloning the Golden Image.
+- Verified workstation hostname (MENAROL-WKS01).
+- Corrected DNS configuration to use the Domain Controller.
+- Successfully joined MENAROL-WKS01 to the menarol.com Active Directory domain.
+- Verified domain authentication using the Engineer account.
+- Confirmed automatic computer object creation in Active Directory.
+- Moved MENAROL-WKS01 into the Computer Accounts → Workstations Organizational Unit.
+- Created the Version 2.0 VMware snapshot.

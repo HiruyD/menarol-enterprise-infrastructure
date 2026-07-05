@@ -41,3 +41,48 @@ Validation performed:
 - winver
 
 Capturing the snapshot after validation provides a reliable rollback point.
+
+---
+
+# Lesson 005
+
+## Active Directory Depends on Proper DNS Configuration
+
+The workstation initially failed to join the domain because it was using the default gateway as its DNS server instead of the Active Directory Domain Controller.
+
+Updating the preferred DNS server to **MENAROL-SRV01** immediately resolved domain name resolution and allowed the workstation to successfully join the domain.
+
+---
+
+# Lesson 006
+
+## Verify Network Connectivity Before Domain Join
+
+Validating hostname resolution, network connectivity, and DNS before attempting to join Active Directory significantly reduces troubleshooting time.
+
+The following commands should be included in future workstation deployments:
+
+- ipconfig /all
+- ping MENAROL-SRV01
+- nslookup menarol.com
+- hostname
+
+---
+
+# Lesson 007
+
+## Preserve the Golden Image
+
+The Windows 11 Golden Image should never be joined directly to Active Directory.
+
+Instead, every production workstation should be deployed as a full clone of the Golden Image, ensuring a clean, reusable, and standardized deployment source.
+
+---
+
+# Lesson 008
+
+## Organize Computer Objects Immediately After Domain Join
+
+New domain-joined workstations are placed in the default **Computers** container.
+
+Moving production systems into the **Computer Accounts → Workstations** Organizational Unit immediately after joining the domain establishes proper organization and prepares the environment for future Group Policy deployment.

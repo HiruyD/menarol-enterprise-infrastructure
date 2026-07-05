@@ -146,6 +146,19 @@ As the infrastructure evolves, the following technologies will be implemented:
 
 ---
 
+### Version 2.0 – Enterprise Domain Workstation
+
+- ✅ Golden Workstation cloned to create the production workstation
+- ✅ Production workstation renamed **MENAROL-WKS01**
+- ✅ DNS configured to use the Active Directory Domain Controller
+- ✅ Successfully joined **MENAROL-WKS01** to the **menarol.com** domain
+- ✅ Domain authentication validated using the enterprise Engineer account
+- ✅ Computer object automatically created in Active Directory
+- ✅ Workstation moved to **Computer Accounts → Workstations**
+- ✅ Version 2.0 snapshot created
+
+--
+
 # Repository Structure
 
 | Folder                 | Purpose                                               |
@@ -191,27 +204,21 @@ This methodology ensures every version of the environment is reproducible, docum
 
 ---
 
-# Current Status
-
-**Current Phase**
-
-Phase 02 — Enterprise Endpoint Integration
-
 **Current Version**
 
-Version 1.0 – Windows 11 Golden Image
+Version 2.0 – Enterprise Domain Workstation
 
 **Next Milestone**
 
-Version 2.0 – Enterprise Workstation Baseline
+Version 3.0 – Enterprise Group Policy Foundation
 
 Objectives:
 
-- Install VMware Tools
-- Configure Windows Update
-- Verify regional settings and time zone
-- Apply enterprise workstation baseline configuration
-- Prepare the Golden Image for cloning
+- Design the initial Group Policy strategy
+- Create baseline Group Policy Objects (GPOs)
+- Link GPOs to the appropriate Organizational Units
+- Validate policy application on MENAROL-WKS01
+- Document the enterprise Group Policy baseline
 
 ---
 
