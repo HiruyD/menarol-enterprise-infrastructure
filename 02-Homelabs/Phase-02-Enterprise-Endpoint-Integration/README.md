@@ -82,3 +82,56 @@ Objectives
 - Confirmed automatic computer object creation in Active Directory.
 - Moved MENAROL-WKS01 into the Computer Accounts → Workstations Organizational Unit.
 - Created the Version 2.0 VMware snapshot.
+
+---
+
+# Version 3.0 – Enterprise Group Policy Foundation
+
+## Objectives
+
+- Introduce enterprise Group Policy management.
+- Create an enterprise Group Policy framework.
+- Separate User and Computer policy design.
+- Configure the first enterprise User Configuration policy.
+- Validate Group Policy deployment on MENAROL-WKS01.
+- Create Version 3.0 VMware snapshots.
+
+---
+
+## Completed
+
+- Opened and validated Group Policy Management.
+- Reviewed Microsoft default Group Policy Objects.
+- Created GPO - Domain Security.
+- Created GPO - Server Baseline.
+- Created GPO - User Baseline.
+- Created GPO - Workstation Baseline.
+- Linked GPO - User Baseline to the User Accounts Organizational Unit.
+- Configured "Prohibit access to Control Panel and PC Settings".
+- Successfully applied the GPO - User Baseline Group Policy.
+- Validated Group Policy deployment on MENAROL-WKS01.
+- Created Version 3.0 VMware snapshots.
+
+---
+
+# Current Status
+
+Current Version
+
+Version 3.0 – Enterprise Group Policy Foundation
+
+---
+
+# Next Milestone
+
+## Version 4.0 – Enterprise Workstation Baseline
+
+Objectives
+
+- Configure Computer Configuration Group Policies.
+- Configure Microsoft Defender baseline.
+- Configure Windows Defender Firewall.
+- Configure Windows Update settings.
+- Configure enterprise power management.
+- Validate Computer Configuration policy processing.
+- Document the enterprise workstation baseline.
