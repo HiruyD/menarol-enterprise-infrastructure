@@ -86,3 +86,50 @@ Instead, every production workstation should be deployed as a full clone of the 
 New domain-joined workstations are placed in the default **Computers** container.
 
 Moving production systems into the **Computer Accounts → Workstations** Organizational Unit immediately after joining the domain establishes proper organization and prepares the environment for future Group Policy deployment.
+
+---
+
+# Lesson 009
+
+## Separate User and Computer Group Policy Objects
+
+Maintaining separate baseline Group Policy Objects for User Configuration and Computer Configuration creates a cleaner enterprise architecture while simplifying administration, troubleshooting, and future expansion.
+
+---
+
+# Lesson 010
+
+## Link Group Policy Objects to the Correct Organizational Unit
+
+Group Policy Objects should be linked to the Organizational Unit containing the objects they are intended to manage.
+
+User Configuration policies should target user accounts, while Computer Configuration policies should target computer accounts.
+
+Following this practice improves policy processing, reduces administrative complexity, and aligns with enterprise Active Directory design principles.
+
+---
+
+# Lesson 011
+
+## Always Validate Group Policy Deployments
+
+Creating and linking a Group Policy Object does not guarantee successful deployment.
+
+Every Group Policy implementation should be validated using both administrative tools and functional testing.
+
+Validation methods used during this milestone included:
+
+- gpupdate /force
+- gpresult /r
+- Domain authentication verification
+- Functional verification by confirming Control Panel restrictions
+
+---
+
+# Lesson 012
+
+## Separate User and Computer Baselines Early
+
+Establishing dedicated baseline Group Policy Objects early in the project creates a scalable management model.
+
+This approach allows future workstation, server, and user policies to evolve independently while maintaining a consistent enterprise Group Policy structure.

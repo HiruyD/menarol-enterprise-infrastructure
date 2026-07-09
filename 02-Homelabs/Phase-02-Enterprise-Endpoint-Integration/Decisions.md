@@ -111,3 +111,45 @@ After joining the domain, production workstations will be moved from the default
 ### Reason
 
 Placing workstations in a dedicated Organizational Unit enables targeted Group Policy deployment, improves administrative organization, and supports future enterprise endpoint management.
+
+---
+
+# Decision 008
+
+## Separate User and Computer Group Policy Objects
+
+### Decision
+
+Maintain separate baseline Group Policy Objects for User Configuration and Computer Configuration.
+
+### Reason
+
+Separating user and computer policies improves administrative organization, simplifies troubleshooting, and aligns with enterprise Group Policy design best practices.
+
+---
+
+# Decision 009
+
+## Preserve Microsoft Default Group Policy Objects
+
+### Decision
+
+The Default Domain Policy and Default Domain Controllers Policy will remain unchanged except for settings that Microsoft intends to be configured within those policies, such as domain password and account lockout policies.
+
+### Reason
+
+Maintaining the Microsoft default Group Policy Objects reduces administrative risk while allowing enterprise-specific configurations to be managed independently through dedicated baseline Group Policy Objects.
+
+---
+
+# Decision 010
+
+## Link Group Policy Objects According to Object Type
+
+### Decision
+
+User Configuration Group Policy Objects will be linked to Organizational Units containing user accounts, while Computer Configuration Group Policy Objects will be linked to Organizational Units containing computer accounts.
+
+### Reason
+
+Applying Group Policy according to the object type provides a cleaner enterprise design, simplifies policy management, and improves future scalability as the Menarol infrastructure grows.

@@ -157,6 +157,23 @@ As the infrastructure evolves, the following technologies will be implemented:
 - ✅ Workstation moved to **Computer Accounts → Workstations**
 - ✅ Version 2.0 snapshot created
 
+---
+
+### Version 3.0 – Enterprise Group Policy Foundation
+
+- ✅ Enterprise Group Policy management introduced
+- ✅ Group Policy Management Console validated
+- ✅ Enterprise Group Policy framework established
+- ✅ GPO - Domain Security created
+- ✅ GPO - Server Baseline created
+- ✅ GPO - User Baseline created
+- ✅ GPO - Workstation Baseline created
+- ✅ User Baseline linked to the User Accounts Organizational Unit
+- ✅ "Prohibit access to Control Panel and PC Settings" policy configured
+- ✅ Group Policy successfully applied to MENAROL-WKS01
+- ✅ User policy validation completed
+- ✅ VMware snapshots created for MENAROL-SRV01 and MENAROL-WKS01
+
 --
 
 # Repository Structure
@@ -204,21 +221,24 @@ This methodology ensures every version of the environment is reproducible, docum
 
 ---
 
-**Current Version**
-
-Version 2.0 – Enterprise Domain Workstation
-
-**Next Milestone**
+Current Version
 
 Version 3.0 – Enterprise Group Policy Foundation
 
+**Next Milestone**
+
+Version 4.0 – Enterprise Workstation Baseline
+
 Objectives:
 
-- Design the initial Group Policy strategy
-- Create baseline Group Policy Objects (GPOs)
-- Link GPOs to the appropriate Organizational Units
-- Validate policy application on MENAROL-WKS01
-- Document the enterprise Group Policy baseline
+- Configure Computer Configuration Group Policies
+- Establish the enterprise workstation baseline
+- Configure Microsoft Defender settings
+- Configure Windows Defender Firewall
+- Configure Windows Update policies
+- Configure enterprise power management settings
+- Validate Computer Configuration policy processing
+- Document the enterprise workstation baseline
 
 ---
 

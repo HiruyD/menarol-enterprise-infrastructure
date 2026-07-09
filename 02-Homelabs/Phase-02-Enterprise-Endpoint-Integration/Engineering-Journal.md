@@ -122,3 +122,62 @@ nslookup menarol.com
 ---
 
 Created Version 2.0 VMware snapshot.
+
+---
+
+# Version 3.0 – Enterprise Group Policy Foundation
+
+## Summary
+
+Introduced enterprise Group Policy management into the Menarol Active Directory environment.
+
+Established the initial enterprise Group Policy architecture by creating dedicated baseline Group Policy Objects, separating User and Computer policy design, and successfully deploying the first enterprise User Configuration policy to a production workstation.
+
+---
+
+## Work Completed
+
+- Opened Group Policy Management Console.
+- Reviewed the Microsoft default Group Policy Objects.
+- Created GPO - Domain Security.
+- Created GPO - Server Baseline.
+- Created GPO - User Baseline.
+- Created GPO - Workstation Baseline.
+- Linked GPO - User Baseline to the User Accounts Organizational Unit.
+- Configured the "Prohibit access to Control Panel and PC Settings" policy.
+- Forced Group Policy processing on MENAROL-WKS01.
+- Verified successful User Group Policy processing.
+- Validated Control Panel restriction through Group Policy.
+- Created Version 3.0 VMware snapshots for MENAROL-SRV01 and MENAROL-WKS01.
+
+---
+
+## Validation
+
+Validation performed after Group Policy deployment:
+
+```powershell
+hostname
+
+whoami
+
+ping MENAROL-SRV01
+
+gpupdate /force
+
+gpresult /r
+```
+
+### Results
+
+- Domain authentication verified.
+- Domain Controller connectivity verified.
+- User Group Policy processed successfully.
+- GPO - User Baseline successfully applied.
+- Control Panel and PC Settings successfully restricted.
+- Computer Policy timeout observed during gpupdate and documented for future investigation.
+- Enterprise Group Policy framework successfully established.
+
+---
+
+Created Version 3.0 VMware snapshots.
