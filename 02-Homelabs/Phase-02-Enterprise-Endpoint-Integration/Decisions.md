@@ -153,3 +153,19 @@ User Configuration Group Policy Objects will be linked to Organizational Units c
 ### Reason
 
 Applying Group Policy according to the object type provides a cleaner enterprise design, simplifies policy management, and improves future scalability as the Menarol infrastructure grows.
+
+---
+
+# Decision 011
+
+## Align Active Directory Identities with Business Roles
+
+### Decision
+
+Enterprise user accounts will be organized according to the actual Menarol business structure.
+
+Each employee account will be placed in the Organizational Unit representing its department and assigned to the corresponding Global Security Group.
+
+### Reason
+
+Aligning identities with business functions improves administrative organization, simplifies future Group Policy deployment, supports role-based access control (RBAC), and mirrors enterprise Active Directory administration.

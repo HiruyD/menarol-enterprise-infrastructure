@@ -180,4 +180,54 @@ gpresult /r
 
 ---
 
-Created Version 3.0 VMware snapshots.
+## Created Version 3.0 VMware snapshots.
+
+# Version 4.0 – Enterprise Identity Expansion
+
+## Summary
+
+Expanded the Menarol Active Directory environment beyond the initial engineering accounts by creating realistic enterprise users representing multiple business units.
+
+This milestone establishes the enterprise identity foundation required for future Group Policy targeting, file system authorization, endpoint management, and security monitoring.
+
+---
+
+## Work Completed
+
+- Reviewed and validated the existing Active Directory Organizational Unit structure.
+- Validated existing Global Security Groups.
+- Standardized enterprise workstation naming as **MENAROL-WKS02**.
+- Created enterprise users across departmental Organizational Units.
+- Populated organizational user properties including:
+  - Company
+  - Department
+  - Office
+  - Job Title
+- Assigned users to their appropriate Global Security Groups.
+- Validated enterprise role-based identity organization.
+
+---
+
+## Validation
+
+Validation performed after identity expansion:
+
+```powershell
+Active Directory Users and Computers
+
+User Properties
+
+Member Of
+```
+
+### Results
+
+- Enterprise users successfully created.
+- Departmental Organizational Unit placement verified.
+- Global Security Group membership verified.
+- Enterprise identity model successfully expanded.
+- Organizational structure prepared for department-specific Group Policy deployment.
+
+---
+
+Created Version 4.0 VMware snapshot.

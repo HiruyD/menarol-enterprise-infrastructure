@@ -114,11 +114,51 @@ Objectives
 
 ---
 
+---
+
+# Version 4.0 – Enterprise Identity Expansion
+
+## Objectives
+
+- Expand the enterprise identity model.
+- Create realistic departmental user accounts.
+- Populate enterprise user attributes.
+- Assign users to Global Security Groups.
+- Validate Organizational Unit placement.
+- Prepare the environment for department-specific Group Policy deployment.
+
+---
+
+## Completed
+
+- Enterprise users created across business departments.
+- Departmental Organizational Units populated.
+- User organizational properties completed.
+- Global Security Group memberships assigned.
+- Enterprise identity model expanded.
+- Environment prepared for role-based Group Policy deployment.
+
+---
+
+# Next Milestone
+
+## Version 5.0 – Enterprise Workstation Baseline
+
+Objectives
+
+- Configure Computer Configuration Group Policies.
+- Configure Microsoft Defender baseline.
+- Configure Windows Defender Firewall.
+- Configure Windows Update settings.
+- Configure enterprise power management.
+- Validate Computer Configuration policy processing.
+- Implement department-specific Group Policies.
+
 # Current Status
 
 Current Version
 
-Version 3.0 – Enterprise Group Policy Foundation
+Version 4.0 – Enterprise Identity Expansion
 
 ---
 

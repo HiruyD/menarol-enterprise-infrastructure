@@ -174,7 +174,17 @@ As the infrastructure evolves, the following technologies will be implemented:
 - ✅ User policy validation completed
 - ✅ VMware snapshots created for MENAROL-SRV01 and MENAROL-WKS01
 
---
+---
+
+### Version 4.0 – Enterprise Identity Expansion
+
+- ✅ Enterprise identity model expanded
+- ✅ Departmental user accounts created
+- ✅ User accounts organized into appropriate Organizational Units
+- ✅ User attributes populated for company, office, department, and job title
+- ✅ Users assigned to appropriate Global Security Groups
+- ✅ Enterprise identity structure prepared for department-specific Group Policy
+- ✅ VMware snapshot created for the updated stable state
 
 # Repository Structure
 
@@ -223,11 +233,15 @@ This methodology ensures every version of the environment is reproducible, docum
 
 Current Version
 
-Version 3.0 – Enterprise Group Policy Foundation
+---
+
+Current Version
+
+Version 4.0 – Enterprise Identity Expansion
 
 **Next Milestone**
 
-Version 4.0 – Enterprise Workstation Baseline
+Version 5.0 – Enterprise Workstation Baseline
 
 Objectives:
 
@@ -237,10 +251,9 @@ Objectives:
 - Configure Windows Defender Firewall
 - Configure Windows Update policies
 - Configure enterprise power management settings
+- Begin department-specific Group Policy planning
 - Validate Computer Configuration policy processing
 - Document the enterprise workstation baseline
-
----
 
 # Long-Term Objectives
 
