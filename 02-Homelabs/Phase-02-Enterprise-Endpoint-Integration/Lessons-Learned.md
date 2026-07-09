@@ -133,3 +133,25 @@ Validation methods used during this milestone included:
 Establishing dedicated baseline Group Policy Objects early in the project creates a scalable management model.
 
 This approach allows future workstation, server, and user policies to evolve independently while maintaining a consistent enterprise Group Policy structure.
+
+---
+
+# Lesson 011
+
+## Build Enterprise Identities Before Expanding Security Controls
+
+Creating a realistic enterprise identity structure before implementing additional Group Policies, file permissions, monitoring, and security tooling provides a scalable administrative foundation.
+
+Representing real business departments rather than generic test accounts allows future security controls to reflect actual enterprise operations.
+
+---
+
+# Lesson 012
+
+## Organizational Units and Security Groups Serve Different Purposes
+
+Organizational Units determine administrative organization and Group Policy scope.
+
+Global Security Groups determine authorization and resource access.
+
+Maintaining this separation aligns with Microsoft's enterprise Active Directory design recommendations and simplifies long-term administration.
