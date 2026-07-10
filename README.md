@@ -54,6 +54,34 @@ Each milestone is fully validated before progressing to the next phase.
 
 ---
 
+# Enterprise Group Policy Architecture
+
+Menarol Enterprise follows a layered Group Policy design that separates policies by administrative scope and system role. This minimizes unintended policy inheritance, simplifies troubleshooting, and follows enterprise Active Directory design principles.
+
+| Group Policy Object               | Scope                 | Purpose                                                                                                                                                                                               |
+| --------------------------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Default Domain Policy             | Domain                | Domain-wide security settings that must apply to all domain members. Used only for core domain policies.                                                                                              |
+| Default Domain Controllers Policy | Domain Controllers OU | Security configuration specific to Domain Controllers.                                                                                                                                                |
+| GPO - Domain Security             | Domain                | Enterprise-wide security policies including password policy, account lockout policy, Kerberos policy, and other domain authentication settings.                                                       |
+| GPO - Server Baseline             | Servers OU            | Security hardening and configuration standards for Windows Server systems.                                                                                                                            |
+| GPO - Workstation Baseline        | Workstations OU       | Enterprise workstation configuration including endpoint hardening, Windows Defender, Windows Firewall, Windows Update, removable media controls, power management, and workstation security settings. |
+| GPO - User Baseline               | User Accounts OU      | User environment configuration, desktop restrictions, Control Panel restrictions, and user experience policies.                                                                                       |
+
+## Group Policy Design Principles
+
+The Menarol Enterprise infrastructure follows these engineering principles:
+
+- Domain-wide authentication policies remain separate from endpoint configuration.
+- Server and workstation policies are managed independently.
+- User configuration is separated from computer configuration whenever possible.
+- Each Group Policy Object has a single administrative purpose.
+- New security controls are added only after validation and documented testing.
+- Every Group Policy modification is validated using Group Policy Results (`gpresult`) before being committed to the repository.
+
+This layered architecture improves scalability, simplifies troubleshooting, and mirrors enterprise Active Directory administration practices.
+
+---
+
 # Planned Technologies
 
 As the infrastructure evolves, the following technologies will be implemented:
@@ -186,6 +214,17 @@ As the infrastructure evolves, the following technologies will be implemented:
 - ✅ Enterprise identity structure prepared for department-specific Group Policy
 - ✅ VMware snapshot created for the updated stable state
 
+### Version 5.0 – Enterprise Workstation Baseline
+
+- ✅ GPO - Workstation Baseline linked to the Workstations Organizational Unit
+- ✅ Computer Configuration Group Policy validated
+- ✅ AutoPlay disabled for all drives
+- ✅ AutoRun disabled
+- ✅ Interactive logon inactivity timeout configured
+- ✅ Last signed-in user hidden at logon
+- ✅ Windows Defender Firewall baseline validated
+- ✅ Enterprise Group Policy architecture documented
+
 # Repository Structure
 
 | Folder                 | Purpose                                               |
@@ -237,23 +276,20 @@ Current Version
 
 Current Version
 
-Version 4.0 – Enterprise Identity Expansion
+Version 5.0 – Enterprise Workstation Baseline
 
 **Next Milestone**
 
-Version 5.0 – Enterprise Workstation Baseline
+Version 6.0 – Enterprise Endpoint Hardening
 
 Objectives:
 
-- Configure Computer Configuration Group Policies
-- Establish the enterprise workstation baseline
-- Configure Microsoft Defender settings
-- Configure Windows Defender Firewall
+- Expand Microsoft Defender enterprise policies
+- Expand Windows Defender Firewall configuration
 - Configure Windows Update policies
-- Configure enterprise power management settings
-- Begin department-specific Group Policy planning
-- Validate Computer Configuration policy processing
-- Document the enterprise workstation baseline
+- Configure enterprise power management
+- Continue workstation security hardening
+- Validate Computer Configuration deployment
 
 # Long-Term Objectives
 

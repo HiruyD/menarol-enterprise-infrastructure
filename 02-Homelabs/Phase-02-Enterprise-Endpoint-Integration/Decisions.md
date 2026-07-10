@@ -169,3 +169,24 @@ Each employee account will be placed in the Organizational Unit representing its
 ### Reason
 
 Aligning identities with business functions improves administrative organization, simplifies future Group Policy deployment, supports role-based access control (RBAC), and mirrors enterprise Active Directory administration.
+
+---
+
+# Decision 012
+
+## Adopt a Layered Enterprise Group Policy Architecture
+
+### Decision
+
+Maintain dedicated Group Policy Objects according to administrative scope:
+
+- Domain Security
+- Server Baseline
+- Workstation Baseline
+- User Baseline
+
+Each Group Policy Object owns a single administrative responsibility and will only contain settings appropriate to its scope.
+
+### Reason
+
+Separating enterprise Group Policies by administrative role simplifies management, reduces unintended policy inheritance, improves troubleshooting, and aligns with enterprise Active Directory design best practices.
