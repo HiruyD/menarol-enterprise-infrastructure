@@ -140,6 +140,35 @@ Objectives
 
 ---
 
+---
+
+# Version 5.0 – Enterprise Workstation Baseline
+
+## Objectives
+
+- Link the Workstation Baseline Group Policy Object to the Workstations Organizational Unit.
+- Validate Computer Configuration Group Policy processing.
+- Establish the initial enterprise workstation security baseline.
+- Configure enterprise removable media protections.
+- Configure enterprise interactive logon policies.
+- Validate Windows Defender Firewall baseline.
+- Document the enterprise Group Policy architecture.
+
+---
+
+## Completed
+
+- Linked **GPO - Workstation Baseline** to the **Computer Accounts → Workstations** Organizational Unit.
+- Verified successful Computer Configuration policy processing using `gpresult`.
+- Configured **Turn off AutoPlay** for all drives.
+- Configured **Do not execute AutoRun commands**.
+- Configured **Machine inactivity limit**.
+- Configured **Do not display last signed-in user**.
+- Validated Windows Defender Firewall enterprise baseline.
+- Formalized the enterprise Group Policy architecture for future infrastructure phases.
+
+---
+
 # Next Milestone
 
 ## Version 5.0 – Enterprise Workstation Baseline
@@ -154,24 +183,22 @@ Objectives
 - Validate Computer Configuration policy processing.
 - Implement department-specific Group Policies.
 
-# Current Status
+## Current Status
 
 Current Version
 
-Version 4.0 – Enterprise Identity Expansion
-
----
+## Version 5.0 – Enterprise Workstation Baseline
 
 # Next Milestone
 
-## Version 4.0 – Enterprise Workstation Baseline
+## Version 6.0 – Enterprise Endpoint Hardening
 
 Objectives
 
-- Configure Computer Configuration Group Policies.
-- Configure Microsoft Defender baseline.
-- Configure Windows Defender Firewall.
-- Configure Windows Update settings.
+- Configure Microsoft Defender enterprise policies.
+- Expand the Windows Defender Firewall baseline.
+- Configure Windows Update enterprise settings.
 - Configure enterprise power management.
-- Validate Computer Configuration policy processing.
-- Document the enterprise workstation baseline.
+- Continue workstation security hardening.
+- Validate Computer Configuration policy deployment.
+- Prepare the environment for department-specific Group Policy deployment.

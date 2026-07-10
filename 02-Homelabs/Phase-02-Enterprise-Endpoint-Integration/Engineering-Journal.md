@@ -231,3 +231,45 @@ Member Of
 ---
 
 Created Version 4.0 VMware snapshot.
+
+---
+
+# Version 5.0 – Enterprise Workstation Baseline
+
+## Summary
+
+Established the initial enterprise workstation security baseline by deploying and validating the first Computer Configuration Group Policies.
+
+This milestone also formalized the enterprise Group Policy architecture, defining administrative ownership for Domain Security, Server Baseline, Workstation Baseline, and User Baseline Group Policy Objects to support future scalability.
+
+---
+
+## Work Completed
+
+- Linked **GPO - Workstation Baseline** to the **Workstations** Organizational Unit.
+- Validated Computer Configuration policy processing using `gpresult`.
+- Configured AutoPlay protection.
+- Configured AutoRun protection.
+- Configured workstation inactivity timeout.
+- Configured interactive logon to hide the last signed-in user.
+- Validated the Windows Defender Firewall enterprise baseline.
+- Established the enterprise Group Policy ownership model.
+
+---
+
+## Validation
+
+Validation performed after workstation baseline deployment:
+
+```powershell
+gpupdate /force
+
+gpresult /scope computer /r
+```
+
+### Results
+
+- Computer Group Policy processed successfully.
+- GPO - Workstation Baseline successfully applied.
+- Enterprise workstation baseline validated.
+- Group Policy architecture confirmed.

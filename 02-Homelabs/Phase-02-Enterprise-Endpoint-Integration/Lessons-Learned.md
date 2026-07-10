@@ -155,3 +155,25 @@ Organizational Units determine administrative organization and Group Policy scop
 Global Security Groups determine authorization and resource access.
 
 Maintaining this separation aligns with Microsoft's enterprise Active Directory design recommendations and simplifies long-term administration.
+
+---
+
+# Lesson 013
+
+## Group Policy Objects Must Be Linked Before They Can Be Applied
+
+Creating a Group Policy Object does not make it active.
+
+The policy must be linked to the appropriate Organizational Unit before Active Directory can process it.
+
+Validation using `gpresult` confirmed successful deployment after the Workstation Baseline Group Policy Object was linked to the Workstations Organizational Unit.
+
+---
+
+# Lesson 014
+
+## Define Group Policy Ownership Before Expanding Security Baselines
+
+Enterprise Group Policies should be organized according to administrative responsibility before adding large numbers of security settings.
+
+Establishing ownership boundaries between Domain Security, Server Baseline, Workstation Baseline, and User Baseline Group Policy Objects provides a scalable architecture while reducing future rework.
