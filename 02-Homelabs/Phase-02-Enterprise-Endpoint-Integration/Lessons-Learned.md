@@ -177,3 +177,33 @@ Validation using `gpresult` confirmed successful deployment after the Workstatio
 Enterprise Group Policies should be organized according to administrative responsibility before adding large numbers of security settings.
 
 Establishing ownership boundaries between Domain Security, Server Baseline, Workstation Baseline, and User Baseline Group Policy Objects provides a scalable architecture while reducing future rework.
+
+---
+
+# Lesson 015
+
+## Validate Endpoint Protection Using PowerShell
+
+Enterprise administrators should validate Microsoft Defender using PowerShell rather than relying solely on graphical interfaces.
+
+Commands such as `Get-MpComputerStatus` provide authoritative confirmation of operational status and are suitable for automation and enterprise troubleshooting.
+
+---
+
+# Lesson 016
+
+## Group Policy Validation Should Include Both User and Computer Policies
+
+Successful Group Policy deployment requires validating both User Configuration and Computer Configuration.
+
+Using `gpresult` confirmed that the Workstation Baseline and User Baseline Group Policy Objects were correctly applied to the intended Active Directory objects.
+
+---
+
+# Lesson 017
+
+## SmartScreen Complements Microsoft Defender
+
+Microsoft Defender Antivirus protects against malware execution, while Microsoft Defender SmartScreen provides protection against malicious websites, phishing attempts, and untrusted downloads.
+
+Deploying both technologies creates a layered endpoint defense strategy consistent with enterprise security best practices.
