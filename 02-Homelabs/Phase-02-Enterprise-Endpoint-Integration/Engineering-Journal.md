@@ -273,3 +273,62 @@ gpresult /scope computer /r
 - GPO - Workstation Baseline successfully applied.
 - Enterprise workstation baseline validated.
 - Group Policy architecture confirmed.
+
+---
+
+# Version 6.0 – Enterprise Endpoint Hardening
+
+## Summary
+
+Expanded the enterprise workstation security baseline by configuring Microsoft Defender Antivirus and Microsoft Defender SmartScreen through Group Policy.
+
+The workstation now enforces centralized endpoint protection settings that align with enterprise security administration while preserving usability for business operations.
+
+---
+
+## Work Completed
+
+- Configured Microsoft Defender Antivirus through Group Policy.
+- Prevented Microsoft Defender Antivirus from being disabled.
+- Enforced Real-time Protection.
+- Enabled Behavior Monitoring.
+- Enabled Process Scanning.
+- Enabled Script Scanning.
+- Enabled Download and Attachment Scanning.
+- Enabled Raw Volume Write Notifications.
+- Configured Windows Defender SmartScreen for Explorer.
+- Configured Microsoft Edge SmartScreen.
+- Configured App Install Control.
+- Validated Microsoft Defender operational status.
+- Validated Group Policy deployment using gpresult.
+- Created Version 6.0 VMware snapshots.
+
+---
+
+## Validation
+
+Validation performed:
+
+```powershell
+gpupdate /force
+
+gpresult /scope computer /r
+
+gpresult /scope user /r
+
+Get-MpComputerStatus
+```
+
+### Results
+
+- Workstation Baseline GPO applied successfully.
+- User Baseline GPO applied successfully.
+- Microsoft Defender Antivirus operational.
+- Real-time Protection operational.
+- Behavior Monitoring operational.
+- SmartScreen successfully managed through Group Policy.
+- Enterprise endpoint security baseline validated.
+
+---
+
+Created Version 6.0 VMware snapshots.

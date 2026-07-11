@@ -190,3 +190,31 @@ Each Group Policy Object owns a single administrative responsibility and will on
 ### Reason
 
 Separating enterprise Group Policies by administrative role simplifies management, reduces unintended policy inheritance, improves troubleshooting, and aligns with enterprise Active Directory design best practices.
+
+---
+
+# Decision 013
+
+## Manage Microsoft Defender Through Group Policy
+
+### Decision
+
+Microsoft Defender Antivirus will serve as the primary endpoint protection platform for enterprise workstations and will be centrally managed using Group Policy.
+
+### Reason
+
+Centralized endpoint protection provides consistent security enforcement across all managed Windows workstations while eliminating reliance on local user configuration.
+
+---
+
+# Decision 014
+
+## Deploy Microsoft Defender SmartScreen Enterprise-Wide
+
+### Decision
+
+Windows Defender SmartScreen will be enabled for both Windows Explorer and Microsoft Edge.
+
+### Reason
+
+SmartScreen provides protection against malicious websites, phishing attacks, and untrusted applications while allowing legitimate business software to remain usable through administrative oversight.
