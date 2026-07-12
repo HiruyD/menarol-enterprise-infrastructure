@@ -51,6 +51,9 @@ Each milestone is fully validated before progressing to the next phase.
 - Enterprise Identity Management
 - Global Security Groups
 - Windows 11 Enterprise Golden Image
+- Enterprise Group Policy Management
+- Microsoft Defender Enterprise Configuration
+- Microsoft Defender SmartScreen
 
 ---
 
@@ -87,7 +90,6 @@ This layered architecture improves scalability, simplifies troubleshooting, and 
 As the infrastructure evolves, the following technologies will be implemented:
 
 - VMware Tools
-- Group Policy
 - DHCP
 - File Services
 - Active Directory Certificate Services (PKI)
@@ -95,7 +97,6 @@ As the infrastructure evolves, the following technologies will be implemented:
 - PowerShell Automation
 - Microsoft Entra ID
 - Microsoft Intune
-- Microsoft Defender
 - Azure
 - AWS
 - Terraform
@@ -107,123 +108,72 @@ As the infrastructure evolves, the following technologies will be implemented:
 
 # Current Progress
 
+---
+
 ## Phase 01 — Enterprise Infrastructure Foundation
 
-### Version 1.0 – Windows Server Baseline
+### Status
 
-- ✅ Windows Server 2022 installed
-- ✅ VMware Tools installed
-- ✅ Server renamed to **MENAROL-SRV01**
-- ✅ System configured
-- ✅ Baseline snapshot created
+✅ Completed
 
----
+### Versions
 
-### Version 2.0 – Enterprise Active Directory Foundation
-
-- ✅ Static IPv4 configured
-- ✅ Active Directory Domain Services installed
-- ✅ DNS Server installed
-- ✅ New forest created (**menarol.com**)
-- ✅ MENAROL-SRV01 promoted to the first Domain Controller
-- ✅ DNS forwarders configured
-- ✅ Domain Controller validated using `dcdiag`
-- ✅ Version 2.0 snapshot created
-
----
-
-### Version 3.0 – Enterprise Active Directory Structure
-
-- ✅ Enterprise Organizational Unit hierarchy designed
-- ✅ Departmental Organizational Units created
-- ✅ Computer Account Organizational Units created
-- ✅ Group Organizational Units created
-- ✅ Enterprise Active Directory structure established
-
----
-
-### Version 4.0 – Enterprise Identity Foundation
-
-- ✅ Enterprise user naming standard established
-- ✅ Standard user account created
-- ✅ Administrative user account created
-- ✅ Administrative Organizational Unit structure implemented
-
----
-
-### Version 5.0 – Enterprise Authorization Foundation
-
-- ✅ Global Security Groups created
-- ✅ Enterprise security group naming convention established
-- ✅ Initial user-to-group assignments completed
-- ✅ Enterprise authorization foundation implemented
+- Version 1.0 – Windows Server Baseline
+- Version 2.0 – Enterprise Active Directory Foundation
+- Version 3.0 – Enterprise Active Directory Structure
+- Version 4.0 – Enterprise Identity Foundation
+- Version 5.0 – Enterprise Authorization Foundation
 
 ---
 
 ## Phase 02 — Enterprise Endpoint Integration
 
-### Version 1.0 – Windows 11 Golden Image
+### Status
 
-- ✅ WIN11-GOLDEN virtual machine created
-- ✅ Windows 11 Enterprise Evaluation installed
-- ✅ Enterprise workstation hardware baseline established
-- ✅ Virtual TPM configured
-- ✅ Local break-glass administrator account (**menarol.admin**) created
-- ✅ Operating system installation validated
-- ✅ Version 1.0 snapshot created
+✅ Completed
 
----
+### Versions
 
-### Version 2.0 – Enterprise Domain Workstation
+- Version 1.0 – Windows 11 Golden Image
+- Version 2.0 – Enterprise Domain Workstation
+- Version 3.0 – Enterprise Group Policy Foundation
+- Version 4.0 – Enterprise Identity Expansion
+- Version 5.0 – Enterprise Workstation Baseline
+- Version 6.0 – Enterprise Endpoint Hardening
 
-- ✅ Golden Workstation cloned to create the production workstation
-- ✅ Production workstation renamed **MENAROL-WKS01**
-- ✅ DNS configured to use the Active Directory Domain Controller
-- ✅ Successfully joined **MENAROL-WKS01** to the **menarol.com** domain
-- ✅ Domain authentication validated using the enterprise Engineer account
-- ✅ Computer object automatically created in Active Directory
-- ✅ Workstation moved to **Computer Accounts → Workstations**
-- ✅ Version 2.0 snapshot created
+**Key Deliverables**
 
----
-
-### Version 3.0 – Enterprise Group Policy Foundation
-
-- ✅ Enterprise Group Policy management introduced
-- ✅ Group Policy Management Console validated
-- ✅ Enterprise Group Policy framework established
-- ✅ GPO - Domain Security created
-- ✅ GPO - Server Baseline created
-- ✅ GPO - User Baseline created
-- ✅ GPO - Workstation Baseline created
-- ✅ User Baseline linked to the User Accounts Organizational Unit
-- ✅ "Prohibit access to Control Panel and PC Settings" policy configured
-- ✅ Group Policy successfully applied to MENAROL-WKS01
-- ✅ User policy validation completed
-- ✅ VMware snapshots created for MENAROL-SRV01 and MENAROL-WKS01
+- Windows 11 Enterprise Golden Image
+- Production workstation deployment
+- Active Directory integration
+- Enterprise identity management
+- Layered Group Policy architecture
+- Enterprise workstation baseline
+- Microsoft Defender enterprise management
+- Microsoft Defender SmartScreen
+- Enterprise endpoint hardening
 
 ---
 
-### Version 4.0 – Enterprise Identity Expansion
+## Phase 03 — Enterprise Security Monitoring
 
-- ✅ Enterprise identity model expanded
-- ✅ Departmental user accounts created
-- ✅ User accounts organized into appropriate Organizational Units
-- ✅ User attributes populated for company, office, department, and job title
-- ✅ Users assigned to appropriate Global Security Groups
-- ✅ Enterprise identity structure prepared for department-specific Group Policy
-- ✅ VMware snapshot created for the updated stable state
+### Status
 
-### Version 5.0 – Enterprise Workstation Baseline
+🚧 In Progress
 
-- ✅ GPO - Workstation Baseline linked to the Workstations Organizational Unit
-- ✅ Computer Configuration Group Policy validated
-- ✅ AutoPlay disabled for all drives
-- ✅ AutoRun disabled
-- ✅ Interactive logon inactivity timeout configured
-- ✅ Last signed-in user hidden at logon
-- ✅ Windows Defender Firewall baseline validated
-- ✅ Enterprise Group Policy architecture documented
+### Current Version
+
+Version 2.0 – Windows Event Forwarding
+
+**Objectives**
+
+- - Windows Event Collector deployed and validated.
+- Source-initiated Windows Event Forwarding configured.
+- Group Policy-based forwarding infrastructure implemented.
+- Functional validation completed on MENAROL-WKS01.
+- Centralized automation of Security log permissions remains an open engineering improvement.
+
+---
 
 # Repository Structure
 
@@ -270,26 +220,28 @@ This methodology ensures every version of the environment is reproducible, docum
 
 ---
 
-Current Version
+# Current Status
 
----
+**Current Phase**
 
-Current Version
+Phase 03 – Enterprise Security Monitoring
 
-Version 5.0 – Enterprise Workstation Baseline
+**Current Version**
+
+Version 2.0 – Windows Event Forwarding
 
 **Next Milestone**
 
-Version 6.0 – Enterprise Endpoint Hardening
+Complete zero-touch deployment of the Security log permission prerequisite.
 
 Objectives:
 
-- Expand Microsoft Defender enterprise policies
-- Expand Windows Defender Firewall configuration
-- Configure Windows Update policies
-- Configure enterprise power management
-- Continue workstation security hardening
-- Validate Computer Configuration deployment
+- Research and validate a supported centralized deployment method.
+- Validate automated deployment on MENAROL-WKS01 and MENAROL-WKS02.
+- Eliminate the remaining manual WEF configuration step.
+- Begin Phase 03 Version 3.0 – Advanced Windows Auditing.
+
+---
 
 # Long-Term Objectives
 
@@ -300,8 +252,8 @@ The completed infrastructure will include:
 - Windows Server Administration
 - Enterprise Networking
 - Group Policy Management
-- File Services
 - Enterprise Windows Workstation Management
+- Enterprise Security Monitoring
 - Public Key Infrastructure (PKI)
 - Windows Server Update Services (WSUS)
 - Microsoft Entra ID Hybrid Identity
@@ -309,7 +261,7 @@ The completed infrastructure will include:
 - Microsoft Defender
 - Infrastructure as Code (Terraform)
 - Cloud Integration (Azure & AWS)
-- Security Monitoring (Wazuh SIEM)
+- Wazuh SIEM
 - Enterprise Automation with PowerShell
 
 ---
