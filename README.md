@@ -1,279 +1,276 @@
 # Menarol Enterprise Infrastructure
 
-> Building an enterprise IT environment from the ground up.
+**Enterprise IT Infrastructure | Pre-Production Proof of Concept**
+
+Designing, implementing, and validating a centrally managed enterprise infrastructure to support Menarol's business operations and future production deployment.
 
 ---
 
-# Overview
+## Project Overview
 
-This repository documents the design, implementation, validation, and continuous improvement of the Menarol Enterprise infrastructure.
+Menarol is a business organization based in Addis Ababa, Ethiopia, with operations spanning healthcare, fitness, wellness, and shared administrative services.
 
-Menarol is a diversified organization headquartered in Addis Ababa, Ethiopia, consisting of multiple business units including healthcare, fitness, wellness, administrative services, and future technology initiatives.
+The organization requires an IT infrastructure capable of supporting multiple business units while maintaining centralized identity management, consistent security policies, controlled access, and operational visibility.
 
-The objective of this project is to design and implement an enterprise-grade infrastructure using industry best practices in:
+This repository documents the design, implementation, testing, troubleshooting, and ongoing development of that infrastructure.
 
-- Systems Administration
-- Enterprise Networking
-- Identity and Access Management (IAM)
-- Cybersecurity
-- Windows Server Administration
-- Cloud Computing
-- Infrastructure Automation
+The initial implementation is hosted in a VMware virtualized environment as a **pre-production proof of concept (PoC)**. This allows configurations, integrations, and security controls to be validated before the organization commits to production infrastructure.
 
-Every milestone is documented, validated, version controlled, and recoverable through VMware snapshots and Git.
+The objective is to establish a documented, technically validated foundation that can support an eventual production deployment.
 
----
+## Business and Technical Objectives
 
-# Vision
-
-Design and maintain a secure, scalable, resilient, and well-documented enterprise infrastructure that mirrors real-world IT environments.
-
-Each milestone is fully validated before progressing to the next phase.
+- Establish centralized authentication and identity management.
+- Organize users, computers, and security groups according to business requirements.
+- Implement role-based access management and administrative separation.
+- Standardize workstation configuration through Group Policy.
+- Apply and validate Windows endpoint security controls.
+- Centralize Windows security event collection.
+- Introduce security monitoring and investigation capabilities.
+- Maintain engineering documentation, validation evidence, and recovery checkpoints.
+- Evaluate production deployment options based on cost, security, operational requirements, and maintainability.
 
 ---
 
-# Current Environment
+## Current Implementation Status
 
-## Virtualization
+**Project stage:** Pre-Production Proof of Concept
 
-- VMware Workstation 17 Pro
+**Active implementation phase:** Phase 03 — Enterprise Security Monitoring
 
-## Operating Systems
+**Current milestone:** Wazuh SIEM integration and end-to-end Windows security event validation
 
-- Windows Server 2022 Standard Evaluation
-- Windows 11 Enterprise Evaluation
+**Production deployment:** Not yet implemented
 
-## Core Technologies Implemented
+### Implementation Summary
 
-- Active Directory Domain Services
-- DNS
-- Enterprise Organizational Units
-- Enterprise Identity Management
-- Global Security Groups
-- Windows 11 Enterprise Golden Image
-- Enterprise Group Policy Management
-- Microsoft Defender Enterprise Configuration
-- Microsoft Defender SmartScreen
+| Capability                       | Status                            | Implementation                                         |
+| -------------------------------- | --------------------------------- | ------------------------------------------------------ |
+| Active Directory Domain Services | Implemented                       | Centralized Windows domain                             |
+| DNS                              | Implemented                       | Active Directory-integrated name resolution            |
+| Organizational Units             | Implemented                       | Business and administrative organization               |
+| Identity and security groups     | Implemented                       | Centralized account and group management               |
+| Windows domain workstation       | Implemented                       | Domain-joined Windows client                           |
+| Group Policy                     | Implemented                       | Centralized Windows configuration                      |
+| Endpoint security baseline       | Implemented in earlier milestones | Windows Defender and workstation policies              |
+| Windows Event Collector          | Validated                         | Centralized event collection                           |
+| Windows Event Forwarding         | Validated                         | Source-initiated event forwarding                      |
+| Wazuh SIEM                       | Operational in PoC                | Centralized security event ingestion and investigation |
+| Custom security detections       | Planned                           | Controlled detection engineering exercises             |
+| Production migration             | Pending                           | Cost and feasibility assessment                        |
 
----
-
-# Enterprise Group Policy Architecture
-
-Menarol Enterprise follows a layered Group Policy design that separates policies by administrative scope and system role. This minimizes unintended policy inheritance, simplifies troubleshooting, and follows enterprise Active Directory design principles.
-
-| Group Policy Object               | Scope                 | Purpose                                                                                                                                                                                               |
-| --------------------------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Default Domain Policy             | Domain                | Domain-wide security settings that must apply to all domain members. Used only for core domain policies.                                                                                              |
-| Default Domain Controllers Policy | Domain Controllers OU | Security configuration specific to Domain Controllers.                                                                                                                                                |
-| GPO - Domain Security             | Domain                | Enterprise-wide security policies including password policy, account lockout policy, Kerberos policy, and other domain authentication settings.                                                       |
-| GPO - Server Baseline             | Servers OU            | Security hardening and configuration standards for Windows Server systems.                                                                                                                            |
-| GPO - Workstation Baseline        | Workstations OU       | Enterprise workstation configuration including endpoint hardening, Windows Defender, Windows Firewall, Windows Update, removable media controls, power management, and workstation security settings. |
-| GPO - User Baseline               | User Accounts OU      | User environment configuration, desktop restrictions, Control Panel restrictions, and user experience policies.                                                                                       |
-
-## Group Policy Design Principles
-
-The Menarol Enterprise infrastructure follows these engineering principles:
-
-- Domain-wide authentication policies remain separate from endpoint configuration.
-- Server and workstation policies are managed independently.
-- User configuration is separated from computer configuration whenever possible.
-- Each Group Policy Object has a single administrative purpose.
-- New security controls are added only after validation and documented testing.
-- Every Group Policy modification is validated using Group Policy Results (`gpresult`) before being committed to the repository.
-
-This layered architecture improves scalability, simplifies troubleshooting, and mirrors enterprise Active Directory administration practices.
+_Implementation status does not imply production readiness. Historical configurations and current operational settings are documented separately where they differ._
 
 ---
 
-# Planned Technologies
+## Current Infrastructure
 
-As the infrastructure evolves, the following technologies will be implemented:
+The following systems represent the most recently verified monitoring environment.
 
-- VMware Tools
-- DHCP
-- File Services
-- Active Directory Certificate Services (PKI)
-- Windows Server Update Services (WSUS)
-- PowerShell Automation
-- Microsoft Entra ID
-- Microsoft Intune
-- Azure
-- AWS
-- Terraform
-- Docker
-- Kubernetes
-- Wazuh SIEM
+| System            | Operating System        | Primary Role                                                 |
+| ----------------- | ----------------------- | ------------------------------------------------------------ |
+| `ServerM1`        | Windows Server 2022     | Domain Controller, DNS, Windows Event Collector, Wazuh Agent |
+| `COMPUTER01`      | Windows client          | Domain workstation and Windows Event Forwarding source       |
+| `MENAROL-WAZUH01` | Ubuntu Server 24.04 LTS | Wazuh Manager, Indexer, and Dashboard                        |
 
----
+**Current Active Directory domain:** `Menarol.local`
 
-# Current Progress
+**Virtualization platform:** VMware Workstation
 
----
+### Configuration History
 
-## Phase 01 — Enterprise Infrastructure Foundation
+Earlier implementation milestones reference different system names, including `MENAROL-SRV01`, `MENAROL-WKS01`, and the domain `menarol.com`.
 
-### Status
+During relocation of the virtualized environment, some implementation progress was lost and older configurations were restored.
 
-✅ Completed
+The current infrastructure inventory reflects the subsequently verified environment. Earlier documentation is retained as an engineering history and should not automatically be treated as the active configuration.
 
-### Versions
-
-- Version 1.0 – Windows Server Baseline
-- Version 2.0 – Enterprise Active Directory Foundation
-- Version 3.0 – Enterprise Active Directory Structure
-- Version 4.0 – Enterprise Identity Foundation
-- Version 5.0 – Enterprise Authorization Foundation
+Any future naming changes will be evaluated separately rather than introduced solely to align documentation.
 
 ---
 
-## Phase 02 — Enterprise Endpoint Integration
+## Security Monitoring Architecture
 
-### Status
+The current monitoring implementation uses native Windows Event Forwarding together with Wazuh.
 
-✅ Completed
+```text
+                  Menarol Active Directory
+                         ServerM1
+                            |
+                  Group Policy Management
+                            |
+                            v
+                       COMPUTER01
+                    Windows Security Log
+                            |
+                            | Windows Event Forwarding
+                            v
+                        ServerM1
+                   Windows Event Collector
+                       ForwardedEvents
+                            |
+                            | Wazuh Windows Agent
+                            v
+                     MENAROL-WAZUH01
+                        Wazuh Manager
+                        Wazuh Indexer
+                        Wazuh Dashboard
+                            |
+                            v
+                 Security Event Investigation
+```
 
-### Versions
+### Verified Monitoring Capabilities
 
-- Version 1.0 – Windows 11 Golden Image
-- Version 2.0 – Enterprise Domain Workstation
-- Version 3.0 – Enterprise Group Policy Foundation
-- Version 4.0 – Enterprise Identity Expansion
-- Version 5.0 – Enterprise Workstation Baseline
-- Version 6.0 – Enterprise Endpoint Hardening
+- A source-initiated Windows Event Forwarding subscription has been configured.
+- Group Policy is used to distribute workstation event-forwarding settings.
+- Selected Windows Security events are collected centrally.
+- A Wazuh Windows agent is installed on the event collector.
+- The agent is configured to ingest the `ForwardedEvents` channel.
+- Events originating from `COMPUTER01` have been identified in Wazuh.
+- The original event source and the Wazuh collection agent can be distinguished during investigation.
 
-**Key Deliverables**
+These results establish an operational event collection and monitoring pipeline within the PoC.
 
-- Windows 11 Enterprise Golden Image
-- Production workstation deployment
-- Active Directory integration
-- Enterprise identity management
-- Layered Group Policy architecture
-- Enterprise workstation baseline
-- Microsoft Defender enterprise management
-- Microsoft Defender SmartScreen
-- Enterprise endpoint hardening
+### Monitoring Limitations
 
----
+The following work remains outstanding:
 
-## Phase 03 — Enterprise Security Monitoring
-
-### Status
-
-🚧 In Progress
-
-### Current Version
-
-Version 2.0 – Windows Event Forwarding
-
-**Objectives**
-
-- - Windows Event Collector deployed and validated.
-- Source-initiated Windows Event Forwarding configured.
-- Group Policy-based forwarding infrastructure implemented.
-- Functional validation completed on MENAROL-WKS01.
-- Centralized automation of Security log permissions remains an open engineering improvement.
-
----
-
-# Repository Structure
-
-| Folder                 | Purpose                                               |
-| ---------------------- | ----------------------------------------------------- |
-| 00-Documentation       | Project documentation and engineering standards       |
-| 01-Infrastructure      | Infrastructure configuration and server documentation |
-| 02-Homelabs            | Individual enterprise implementation phases           |
-| 03-Scripts             | PowerShell, Terraform, Bash, and automation           |
-| 04-Network-Diagrams    | Network topology and architecture                     |
-| 05-GitHub-Portfolio    | Portfolio-ready project summaries                     |
-| 06-Certification-Notes | Certification study notes and references              |
+- Controlled failed-authentication and account-lockout detection testing.
+- Privileged group membership change monitoring.
+- PowerShell activity monitoring and validation.
+- Custom Wazuh detection rules and alert tuning.
+- Documented detection test cases and investigation procedures.
+- Production logging, retention, and recovery requirements.
+- Resolution or formal acceptance of remaining WEF deployment automation limitations.
 
 ---
 
-# Documentation Standards
+## Implementation Phases
 
-Every completed milestone includes:
+### Phase 01 — Enterprise Infrastructure Foundation
 
-- Objectives
-- Engineering Decisions
-- Configuration Documentation
-- Validation Results
-- VMware Snapshot
-- Lessons Learned
-- Git Commit History
-- Future Improvements
+Established the Windows Server and Active Directory foundation, including domain services, DNS, organizational structure, identities, and security groups.
 
----
+[View Phase 01 Documentation](02-Implementation-Phases/Phase-01-Enterprise-Infrastructure-Foundation/README.md)
 
-# Engineering Methodology
+### Phase 02 — Enterprise Endpoint Integration
 
-Every infrastructure milestone follows the same workflow:
+Introduced Windows enterprise endpoints, domain integration, Group Policy management, workstation baselines, and endpoint security configuration.
 
-1. Design
-2. Implement
-3. Validate
-4. Snapshot
-5. Document
-6. Commit
-7. Push
+[View Phase 02 Documentation](02-Implementation-Phases/Phase-02-Enterprise-Endpoint-Integration/README.md)
 
-This methodology ensures every version of the environment is reproducible, documented, and recoverable.
+### Phase 03 — Enterprise Security Monitoring
+
+Introduced centralized Windows event collection, source-initiated Windows Event Forwarding, and Wazuh security monitoring.
+
+This phase remains active while additional detection engineering and monitoring validation are completed.
+
+[View Phase 03 Documentation](02-Implementation-Phases/Phase-03-Enterprise-Security-Monitoring/README.md)
 
 ---
 
-# Current Status
+## Repository Navigation
 
-**Current Phase**
+| Document                                                                                     | Purpose                                         |
+| -------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| [Phase 01](02-Implementation-Phases/Phase-01-Enterprise-Infrastructure-Foundation/README.md) | Enterprise infrastructure foundation            |
+| [Phase 02](02-Implementation-Phases/Phase-02-Enterprise-Endpoint-Integration/README.md)      | Windows endpoint integration and security       |
+| [Phase 03](02-Implementation-Phases/Phase-03-Enterprise-Security-Monitoring/README.md)       | Centralized security monitoring                 |
+| [Roadmap](ROADMAP.md)                                                                        | Implementation priorities and future milestones |
+| [Changelog](CHANGELOG.md)                                                                    | Project milestone and documentation history     |
 
-Phase 03 – Enterprise Security Monitoring
+Each implementation phase maintains supporting engineering records:
 
-**Current Version**
+- **README.md:** Objectives, implementation scope, and validation status.
+- **Decisions.md:** Technical decisions and their rationale.
+- **Engineering-Journal.md:** Implementation activities, troubleshooting, and test results.
+- **Lessons-Learned.md:** Operational findings and engineering improvements.
 
-Version 2.0 – Windows Event Forwarding
-
-**Next Milestone**
-
-Complete zero-touch deployment of the Security log permission prerequisite.
-
-Objectives:
-
-- Research and validate a supported centralized deployment method.
-- Validate automated deployment on MENAROL-WKS01 and MENAROL-WKS02.
-- Eliminate the remaining manual WEF configuration step.
-- Begin Phase 03 Version 3.0 – Advanced Windows Auditing.
+_Some document names and repository paths will be standardized during the publication cleanup. Existing links are retained until the corresponding files are moved or renamed._
 
 ---
 
-# Long-Term Objectives
+## Engineering Methodology
 
-The completed infrastructure will include:
+The implementation follows a controlled engineering process:
 
-- Enterprise Active Directory
-- Identity and Access Management (IAM)
-- Windows Server Administration
-- Enterprise Networking
-- Group Policy Management
-- Enterprise Windows Workstation Management
-- Enterprise Security Monitoring
-- Public Key Infrastructure (PKI)
-- Windows Server Update Services (WSUS)
-- Microsoft Entra ID Hybrid Identity
-- Microsoft Intune
-- Microsoft Defender
-- Infrastructure as Code (Terraform)
-- Cloud Integration (Azure & AWS)
-- Wazuh SIEM
-- Enterprise Automation with PowerShell
+1. **Requirements:** Identify business needs and technical constraints.
+2. **Design:** Select an architecture and define implementation scope.
+3. **Implementation:** Configure infrastructure components in the PoC environment.
+4. **Validation:** Test functionality, security controls, and system integration.
+5. **Recovery:** Establish appropriate VMware recovery checkpoints.
+6. **Documentation:** Record configurations, decisions, results, and limitations.
+7. **Version Control:** Review, commit, and publish engineering documentation.
+8. **Improvement:** Track outstanding risks and prepare the next milestone.
+
+A component is considered validated only when its expected behavior has been observed and recorded.
 
 ---
 
-# Project Philosophy
+## Production Deployment Strategy
 
-This repository represents the continuous engineering and operational development of the Menarol Enterprise infrastructure.
+Menarol has not yet selected its production infrastructure or migration method.
 
-Every configuration change is documented.
+The final decision will consider total cost of ownership, business requirements, security, system compatibility, reliability, operational complexity, and long-term maintainability.
 
-Every milestone is validated.
+The following approaches remain under consideration:
 
-Every implementation is version controlled.
+| Deployment Option                     | Description                                                 |
+| ------------------------------------- | ----------------------------------------------------------- |
+| Virtual machine migration             | Migrate compatible PoC systems to production infrastructure |
+| Rebuild from validated configurations | Deploy production systems using the documented PoC design   |
+| Hybrid deployment                     | Migrate selected components while rebuilding others         |
 
-Every engineering decision is recorded.
+The lowest-cost option that satisfies the organization's operational and security requirements will be evaluated before a final deployment decision.
+
+### Production Readiness Considerations
+
+Before production implementation, the organization will need to assess:
+
+- Hardware and infrastructure capacity.
+- Windows Server and endpoint licensing.
+- Active Directory naming and identity requirements.
+- Network architecture and segmentation.
+- Backup, restore, and disaster recovery.
+- Administrative access and credential management.
+- Monitoring coverage, log retention, and storage capacity.
+- Security hardening and configuration management.
+- Business continuity and operational support.
+- Migration testing and rollback procedures.
+
+Successful PoC validation is one input into production planning, not a substitute for production acceptance testing.
+
+---
+
+## Current Engineering Priorities
+
+1. Complete and publish the current infrastructure documentation.
+2. Add sanitized configuration and validation evidence.
+3. Validate failed-login and account-lockout monitoring.
+4. Test privileged identity and group membership change monitoring.
+5. Expand Windows auditing and PowerShell event visibility.
+6. Develop and validate Wazuh detection rules.
+7. Document production readiness requirements and unresolved engineering decisions.
+
+---
+
+## Documentation and Security
+
+This repository is intended to provide a technical record of the infrastructure implementation without exposing operational secrets.
+
+Public documentation must not contain passwords, recovery keys, authentication tokens, private certificates, or other sensitive credentials.
+
+Configuration screenshots and supporting evidence will be reviewed before publication.
+
+---
+
+## Project Status
+
+**Active:** Enterprise Security Monitoring and Detection Engineering
+
+**Environment:** Pre-Production Proof of Concept
+
+**Next technical milestone:** Controlled Windows authentication failure detection and validation through the WEF-to-Wazuh monitoring pipeline.
+
+The repository will continue to evolve as additional infrastructure components are implemented, validated, and documented.
