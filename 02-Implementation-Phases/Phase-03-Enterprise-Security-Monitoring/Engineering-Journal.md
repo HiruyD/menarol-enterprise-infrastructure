@@ -334,7 +334,7 @@ Account lockout monitoring using Event ID `4740` will be evaluated separately.
 | ---------------------------------------------- | -------------- |
 | Centralized Security log permission deployment | Open           |
 | Revalidation of historical endpoint policies   | Pending        |
-| Controlled failed-authentication detection     | Next milestone |
+| Controlled failed-authentication detection     | Validated 2026-10-09 |
 | Account lockout monitoring                     | Planned        |
 | Privileged group change monitoring             | Planned        |
 | PowerShell logging                             | Planned        |
@@ -349,6 +349,31 @@ Account lockout monitoring using Event ID `4740` will be evaluated separately.
 
 The current environment has demonstrated successful centralized Windows security event collection and Wazuh ingestion.
 
-The next activity is controlled failed-authentication monitoring, followed by additional detection engineering exercises.
+Controlled failed-authentication monitoring and local ServerM1 hardening/FIM tests are now recorded in the dated entry below. Account-lockout testing, assessment reliability investigation, and additional detection engineering remain open.
 
 Future journal entries will record the date, configuration changes, validation evidence, observed results, troubleshooting findings, and outstanding actions for each activity.
+
+---
+
+## 2026-10-09 — Focused Security Monitoring and Hardening Validation
+
+**Status:** Four focused exercises validated in the PoC; operational follow-up remains open.
+
+The supplied [validation record](Validation-2026-10-09.md) records COMPUTER01 → WEF → ServerM1/WEC → Wazuh agent 001 → MENAROL-WAZUH01, with original-source attribution in Menarol.local. It supersedes the earlier planned status of Milestone 08 for failed-logon testing only.
+
+- Two authorised 4625 records triggered built-in Wazuh rule 60122, severity 5. This was controlled testing, not a real attack or validated brute-force correlation rule.
+- WEF delivery timeout changed from 900000 to 30000 milliseconds; precise end-to-end latency improvement was not measured.
+- Minimum password length changed from 7 to 14, verified in Active Directory and local ServerM1 SCA check 27003.
+- Initial baseline: 95 passed / 264 failed, 26%. Pre-hardening reassessment: 98 passed / 261 failed, 27%; three existing-policy checks corrected without configuration changes. Final hardening retest: 99 passed / 260 failed, 27%; one additional check passed after minimum password length changed from 7 to 14.
+- SCA results were inconsistent after reboot. Reassessment passed following an agent restart, but the root cause remains unresolved.
+- Local ServerM1 FIM verified added/modified/deleted events under rules 554/550/553. SCA and FIM were not tested on COMPUTER01.
+
+Temporary secplus.test account cleanup and GPO backup confirmation remain unverified. Account-lockout testing, custom rules, advanced logging, WEF permission automation, and production readiness remain pending. Integration of this evidence changed repository documentation only; no running infrastructure was changed during the repository work.
+
+---
+
+## 2026-10-09 — Cleanup Verification Clarification
+
+User-supplied verification confirms `secplus.test` is disabled (`Enabled=False`) and `C:\Menarol-FIM-Test\monitoring-test.txt` is absent (`Test-Path=False`). The empty demonstration folder and its FIM configuration remain intentionally retained.
+
+This clarification supersedes the pending account/file cleanup status in the earlier 9 October entry, which is retained as history. See the [updated validation record](Validation-2026-10-09.md). GPO backup confirmation remains unverified. SCA inconsistency after reboot, account-lockout testing, custom rules, advanced logging, WEF permission automation, and production readiness remain unresolved or pending.

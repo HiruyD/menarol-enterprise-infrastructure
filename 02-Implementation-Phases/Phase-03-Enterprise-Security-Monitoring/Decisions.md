@@ -248,3 +248,23 @@ Future decisions should document:
 5. Risks, limitations, and outstanding work.
 
 A proposed configuration will not be documented as an approved enterprise standard until it has been successfully validated.
+
+---
+
+## 2026-10-09 — Decision 010 — Record Focused Validation Within Its Evidence Limits
+
+**Decision:** Retain the current COMPUTER01 → WEF → ServerM1/WEC → Wazuh agent 001 → MENAROL-WAZUH01 architecture and distinguish forwarded workstation telemetry from local ServerM1 SCA/FIM coverage.
+
+**Rationale:** Two controlled 4625 records demonstrate built-in rule 60122 at severity 5, not a real attack or brute-force correlation. The password-length change from 7 to 14 is one remediation verified in AD and SCA check 27003; three earlier corrected checks resulted from reassessment. FIM rules 554/550/553 validate the local test directory only.
+
+**Status:** Adopted for reporting the [9 October validation](Validation-2026-10-09.md). This updates Decision 009's earlier planned status for failed-logon testing only. Account-lockout testing remains pending.
+
+Do not treat a passing SCA reassessment as a permanent fix for post-reboot inconsistency, or the WEF timeout reduction from 900000 to 30000 milliseconds as a measured latency improvement. Keep temporary account cleanup and GPO backup confirmation unverified. Custom rules, advanced logging, WEF permission automation, and production readiness require separate validation.
+
+---
+
+## 2026-10-09 — Cleanup Verification Clarification
+
+User-supplied verification confirms `secplus.test` is disabled (`Enabled=False`) and `C:\Menarol-FIM-Test\monitoring-test.txt` is absent (`Test-Path=False`). The empty demonstration folder and its FIM configuration remain intentionally retained.
+
+This clarification supersedes the pending account/file cleanup status in the earlier 9 October entry, which is retained as history. See the [updated validation record](Validation-2026-10-09.md). GPO backup confirmation remains unverified. SCA inconsistency after reboot, account-lockout testing, custom rules, advanced logging, WEF permission automation, and production readiness remain unresolved or pending.

@@ -91,15 +91,26 @@ Confirm which original endpoint-hardening configurations remain active following
 
 ### Milestone 3.3 — Authentication Monitoring
 
-**Status: Next Technical Milestone**
+**Status: Controlled failed-logon test validated; account-lockout testing pending**
 
-- Generate controlled failed Windows authentication attempts.
-- Identify and investigate Security Event ID 4625.
-- Verify event collection through Windows Event Forwarding.
-- Verify event ingestion and visibility in Wazuh.
-- Evaluate alert behavior and detection coverage.
-- Document test procedure, evidence, findings, and limitations.
-- Extend testing to account lockout Event ID 4740 where appropriate.
+- Two authorised 4625 records reached Wazuh through COMPUTER01 → WEF → ServerM1/WEC → agent 001 → MENAROL-WAZUH01.
+- Built-in rule 60122 triggered at severity 5; brute-force correlation was not validated.
+- WEF delivery timeout changed from 900000 to 30000 milliseconds; precise end-to-end latency improvement was not measured.
+- [Validation record and evidence](02-Implementation-Phases/Phase-03-Enterprise-Security-Monitoring/Validation-2026-10-09.md) document results and limits.
+- Account-lockout Event ID 4740 remains untested; no lockout policy change was made.
+
+### Local ServerM1 Hardening and Integrity Validation — 2026-10-09
+
+**Status: Focused tests validated; SCA reliability and GPO backup confirmation pending**
+
+- Domain minimum password length changed from 7 to 14, verified in Active Directory and local SCA check 27003.
+- Initial SCA baseline: 95 passed / 264 failed, 26%. Pre-hardening reassessment: 98 passed / 261 failed, 27%. Final hardening retest: 99 passed / 260 failed, 27%; one additional check passed after minimum password length changed from 7 to 14.
+- Three existing-policy checks corrected on the pre-hardening reassessment without configuration changes, not additional remediation.
+- Post-reboot assessment inconsistencies remain unresolved despite a passing reassessment.
+- Local ServerM1 FIM verified added/modified/deleted events under rules 554/550/553.
+- Cleanup verified: `secplus.test` disabled (`Enabled=False`); `C:\Menarol-FIM-Test\monitoring-test.txt` absent (`Test-Path=False`). The empty demonstration folder and its FIM configuration remain intentionally retained.
+- GPO backup confirmation remains pending.
+- These local assessments do not establish SCA or FIM coverage on COMPUTER01.
 
 ### Milestone 3.4 — Privileged Access Monitoring
 
@@ -209,9 +220,9 @@ A technical milestone is considered complete when:
 ## Immediate Next Actions
 
 1. Complete repository publication cleanup.
-2. Capture and review WEF and Wazuh validation evidence.
-3. Complete the controlled failed-authentication monitoring exercise.
-4. Document the results in Phase 03.
+2. Review the integrated 9 October 2026 validation record and screenshots.
+3. Confirm the GPO backup outcome.
+4. Investigate post-reboot SCA inconsistency and evaluate account-lockout testing separately.
 5. Continue security monitoring and detection engineering milestones.
 
 ---
