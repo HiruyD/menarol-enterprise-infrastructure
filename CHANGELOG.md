@@ -154,3 +154,30 @@ Future entries should record:
 - References to relevant phase documentation.
 
 Changes must not be recorded as completed until they have been implemented and verified.
+
+---
+
+## 2026-10-09 — Security Portfolio Evidence Integration
+
+### Validated PoC Results
+
+- Added the [Phase 03 validation record](02-Implementation-Phases/Phase-03-Enterprise-Security-Monitoring/Validation-2026-10-09.md), four primary screenshots, and two supporting screenshots from the supplied portfolio package.
+- Recorded COMPUTER01 → WEF → ServerM1/WEC → Wazuh agent 001 → MENAROL-WAZUH01 with source attribution.
+- Recorded two authorised 4625 records triggering built-in Wazuh rule 60122, severity 5; no real attack or brute-force correlation is claimed.
+- Recorded minimum password length 7 → 14, verified in Active Directory and local ServerM1 SCA check 27003. Initial baseline: 95 passed / 264 failed, 26%. Pre-hardening reassessment: 98 passed / 261 failed, 27%; three existing-policy checks corrected without configuration changes. Final hardening retest: 99 passed / 260 failed, 27%; one additional check passed after the minimum-length change.
+- Recorded local ServerM1 FIM added/modified/deleted events under rules 554/550/553; no workstation SCA/FIM coverage is claimed.
+- Recorded WEF delivery timeout 900000 → 30000 milliseconds without claiming a measured end-to-end latency improvement.
+
+### Documentation and Remaining Work
+
+Integrated the README summary once with two featured screenshots, updated current Phase 03 status and roadmap, and appended journal, decision, and lesson records. Earlier milestone entries remain historical; the dated record supersedes their planned failed-logon status. LinkedIn and resume drafts remain outside the repository.
+
+SCA reassessment passed, but post-reboot inconsistency remains unresolved. Temporary account cleanup and GPO backup confirmation remain unverified. Account-lockout testing, custom rules, advanced logging, WEF permission automation, and production readiness remain pending. No infrastructure changes or Git publication actions were performed during this integration.
+
+---
+
+## 2026-10-09 — Verified Test Cleanup Clarification
+
+User-supplied verification confirms `secplus.test` is disabled (`Enabled=False`) and `C:\Menarol-FIM-Test\monitoring-test.txt` is absent (`Test-Path=False`). The empty demonstration folder and its FIM configuration remain intentionally retained.
+
+The earlier integration entry is preserved as history; its pending cleanup status is superseded by this verification and the [updated validation record](02-Implementation-Phases/Phase-03-Enterprise-Security-Monitoring/Validation-2026-10-09.md). GPO backup confirmation remains unverified. SCA inconsistency after reboot, account-lockout testing, custom rules, advanced logging, WEF permission automation, and production readiness remain unresolved or pending. This update records supplied evidence; no running infrastructure was changed.

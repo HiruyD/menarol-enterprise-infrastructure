@@ -363,6 +363,25 @@ Avoid selecting a production migration method before those requirements have bee
 
 Phase 03 has demonstrated the importance of separating infrastructure functionality, security monitoring visibility, detection validation, and production readiness.
 
-The next engineering priority is to perform controlled failed-authentication testing and verify whether the existing Windows Event Forwarding and Wazuh integration provides the expected monitoring evidence.
+Controlled failed-authentication testing is now validated in the dated lessons below. The next priorities include assessment reliability after reboot, account-lockout testing, and operational confirmation.
 
 Future lessons will be added as additional detection scenarios, endpoint logging capabilities, and operational requirements are tested.
+
+---
+
+## 2026-10-09 — Lessons 016–019 — Focused Validation and Evidence Limits
+
+- **016 — Trace collection timing:** A source 4625 existed before collector delivery. The WEF timeout changed from 900000 to 30000 milliseconds, but no precise end-to-end improvement was measured. Inspect generation, selection, delivery, ingestion, and filters separately.
+- **017 — Reassess before remediation:** The initial baseline was 95 passed / 264 failed, 26%. Three existing-policy checks corrected without configuration changes on the pre-hardening reassessment: 98 passed / 261 failed, 27%. Changing minimum password length from 7 to 14 yielded the final hardening retest: 99 passed / 260 failed, 27%. Only one additional check, 27003, represents the new remediation, verified in Active Directory and SCA.
+- **018 — A passing retest does not resolve root cause:** SCA became inconsistent after reboot and passed after reassessment. The cause remains unresolved; track reliability rather than declaring a permanent fix.
+- **019 — Preserve scope and intent:** SCA and FIM ran locally on ServerM1, not COMPUTER01. Two authorised 4625 records triggered built-in rule 60122 at severity 5; they do not prove an attack or brute-force correlation. Added/modified/deleted FIM events matched rules 554/550/553.
+
+See the [validation record](Validation-2026-10-09.md). Account cleanup and GPO backup remain unverified. Account-lockout testing, custom rules, advanced logging, WEF permission automation, and production readiness remain pending.
+
+---
+
+## 2026-10-09 — Cleanup Verification Clarification
+
+User-supplied verification confirms `secplus.test` is disabled (`Enabled=False`) and `C:\Menarol-FIM-Test\monitoring-test.txt` is absent (`Test-Path=False`). The empty demonstration folder and its FIM configuration remain intentionally retained.
+
+This clarification supersedes the pending account/file cleanup status in the earlier 9 October entry, which is retained as history. See the [updated validation record](Validation-2026-10-09.md). GPO backup confirmation remains unverified. SCA inconsistency after reboot, account-lockout testing, custom rules, advanced logging, WEF permission automation, and production readiness remain unresolved or pending.

@@ -104,6 +104,8 @@ Designed and implemented the enterprise Organizational Unit (OU) structure for t
 
 Implemented the initial enterprise identity model using dedicated standard and administrative user accounts.
 
+*Publication note: Account names in these historical entries were anonymised as `lab.user` (standard) and `lab.user.admin` (administrative). These labels preserve the recorded actions and group memberships; actual accounts were not renamed.*
+
 ### Work Completed
 
 - Established enterprise user naming standards.

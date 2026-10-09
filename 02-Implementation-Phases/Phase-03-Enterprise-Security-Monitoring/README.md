@@ -3,7 +3,7 @@
 **Project:** Menarol Enterprise Infrastructure
 **Environment:** Pre-Production Proof of Concept
 **Status:** In Progress
-**Current Milestone:** Wazuh Integration Validated — Detection Testing Next
+**Current Milestone:** Controlled 4625, password-policy hardening, and local ServerM1 FIM validated — further detection testing pending
 
 ---
 
@@ -79,7 +79,7 @@ The current architecture uses Windows Event Forwarding to collect workstation ev
                       Windows Event Collector
                          ForwardedEvents
                                 |
-                                | Wazuh Windows Agent
+                                | Wazuh Windows Agent 001
                                 v
                         MENAROL-WAZUH01
                           Wazuh Manager
@@ -310,15 +310,17 @@ It does not establish that every selected Security Event ID has been tested, tha
 
 ---
 
-## 9. Next Milestone — Authentication Detection Testing
+## 9. Authentication Detection Testing
 
-**Status: Planned**
+**Status: Controlled failed-logon validation passed on 2026-10-09; account-lockout testing pending**
+
+Two authorised 4625 records triggered built-in Wazuh rule 60122, severity 5. This did not validate a brute-force correlation rule. See the [validation record and four primary screenshots](Validation-2026-10-09.md) for the executed procedure and limitations.
 
 ### Objective
 
 Validate the monitoring pipeline using controlled failed-authentication events.
 
-### Planned Procedure
+### Procedure Validated for Failed Logons
 
 1. Establish the expected Windows audit configuration.
 2. Select an authorized test account and workstation.
@@ -387,7 +389,7 @@ Testing must avoid production credentials and unintended account lockouts.
 
 Engineering evidence will be organized to demonstrate implementation and validation without exposing credentials or unnecessary sensitive information.
 
-Planned evidence includes:
+Evidence for the 9 October tests is available in the [validation record](Validation-2026-10-09.md). Additional evidence to maintain includes:
 
 - Windows Event Forwarding subscription configuration.
 - Group Policy configuration and application.
@@ -410,7 +412,12 @@ Supporting records are maintained in the Phase 03 engineering documentation:
 **Windows Event Forwarding:** Functionally validated
 **Wazuh Deployment:** Operational in PoC
 **Wazuh Event Ingestion:** Validated
-**Authentication Detection Testing:** Next milestone
+**Authentication Detection Testing:** Two controlled 4625 records validated; account-lockout testing pending
+**ServerM1 SCA:** Initial baseline: 95 passed / 264 failed, 26%; pre-hardening reassessment: 98 passed / 261 failed, 27%, with three existing-policy checks corrected without configuration changes; final hardening retest: 99 passed / 260 failed, 27%, with one additional check passing after minimum length changed from 7 to 14, verified in AD and check 27003
+**ServerM1 FIM:** Added/modified/deleted events validated under rules 554/550/553
+**Assessment Reliability:** Reassessment passed; post-reboot inconsistency remains unresolved
+**Cleanup:** Verified — `secplus.test` disabled (`Enabled=False`); `C:\Menarol-FIM-Test\monitoring-test.txt` absent (`Test-Path=False`); empty demonstration folder and FIM configuration intentionally retained
+**GPO Backup Confirmation:** Unverified
 **Advanced Audit Policy:** Further validation planned
 **PowerShell Monitoring:** Planned
 **Sysmon:** Planned
@@ -419,6 +426,6 @@ Supporting records are maintained in the Phase 03 engineering documentation:
 
 ### Next Engineering Activity
 
-Conduct a controlled Windows authentication failure test and trace the resulting event through the Windows Event Forwarding and Wazuh monitoring pipeline.
+Confirm the GPO backup, investigate SCA reliability after reboot, and evaluate account-lockout testing separately. SCA and FIM were tested locally on ServerM1, not COMPUTER01. Three earlier corrected SCA checks were reassessment results, not additional remediation.
 
-Record the test procedure, observed results, detection behavior, and supporting evidence before proceeding to additional monitoring scenarios.
+WEF delivery timeout changed from 900000 to 30000 milliseconds; precise end-to-end latency improvement was not measured. Advanced logging, WEF permission automation, custom rules, and production readiness remain pending.

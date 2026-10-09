@@ -2,7 +2,32 @@
 
 **Enterprise IT Infrastructure | Pre-Production Proof of Concept**
 
-Designing, implementing, and validating a centrally managed enterprise infrastructure to support Menarol's business operations and future production deployment.
+This repository records my hands-on work with Active Directory, Group Policy, Windows Event Forwarding, and Wazuh in a VMware proof of concept.
+
+## Security monitoring validation — October 2026
+
+I traced workstation events into Wazuh, tested failed-logon alerts, changed one password-policy setting, and checked local file integrity monitoring on ServerM1.
+
+| Capability | Verified outcome |
+| --- | --- |
+| Centralised Windows monitoring | Workstation events collected through WEF/WEC and investigated in Wazuh with original-source attribution |
+| Authentication monitoring | Two authorised Event ID 4625 records triggered built-in Wazuh rule 60122, severity 5 |
+| Password-policy hardening | Domain minimum password length increased from 7 to 14; verified in Active Directory and SCA check 27003 on ServerM1 |
+| File integrity monitoring | Local ServerM1 added/modified/deleted events verified under rules 554/550/553 |
+
+[View the validation record and screenshots](02-Implementation-Phases/Phase-03-Enterprise-Security-Monitoring/Validation-2026-10-09.md)
+
+### Selected evidence
+
+[![Controlled authentication alerts](02-Implementation-Phases/Phase-03-Enterprise-Security-Monitoring/evidence/2026-10-09/02-authentication-alerts.png)](02-Implementation-Phases/Phase-03-Enterprise-Security-Monitoring/evidence/2026-10-09/02-authentication-alerts.png)
+
+*Two authorised failed-logon records matched built-in rule 60122.*
+
+[![File integrity monitoring](02-Implementation-Phases/Phase-03-Enterprise-Security-Monitoring/evidence/2026-10-09/04-file-integrity-events.png)](02-Implementation-Phases/Phase-03-Enterprise-Security-Monitoring/evidence/2026-10-09/04-file-integrity-events.png)
+
+*Added, modified, and deleted events for the same test file.*
+
+The test account is disabled and the test file is absent; the empty folder and its FIM configuration are retained for demonstrations. The [validation record](02-Implementation-Phases/Phase-03-Enterprise-Security-Monitoring/Validation-2026-10-09.md#cleanup-verification--9-october-2026) records the cleanup checks.
 
 ---
 
@@ -10,13 +35,9 @@ Designing, implementing, and validating a centrally managed enterprise infrastru
 
 Menarol is a business organization based in Addis Ababa, Ethiopia, with operations spanning healthcare, fitness, wellness, and shared administrative services.
 
-The organization requires an IT infrastructure capable of supporting multiple business units while maintaining centralized identity management, consistent security policies, controlled access, and operational visibility.
+The project explores centralized identity, workstation policy, and security monitoring for those business units. The implementation runs in VMware as a **pre-production proof of concept (PoC)**.
 
-This repository documents the design, implementation, testing, troubleshooting, and ongoing development of that infrastructure.
-
-The initial implementation is hosted in a VMware virtualized environment as a **pre-production proof of concept (PoC)**. This allows configurations, integrations, and security controls to be validated before the organization commits to production infrastructure.
-
-The objective is to establish a documented, technically validated foundation that can support an eventual production deployment.
+The documentation records what was configured, how it was tested, and what still needs investigation before a production decision.
 
 ## Business and Technical Objectives
 
@@ -38,7 +59,7 @@ The objective is to establish a documented, technically validated foundation tha
 
 **Active implementation phase:** Phase 03 — Enterprise Security Monitoring
 
-**Current milestone:** Wazuh SIEM integration and end-to-end Windows security event validation
+**Current milestone:** Controlled authentication, password-policy hardening, and local ServerM1 FIM validated; assessment reliability and further detection testing remain open
 
 **Production deployment:** Not yet implemented
 
@@ -56,10 +77,12 @@ The objective is to establish a documented, technically validated foundation tha
 | Windows Event Collector          | Validated                         | Centralized event collection                           |
 | Windows Event Forwarding         | Validated                         | Source-initiated event forwarding                      |
 | Wazuh SIEM                       | Operational in PoC                | Centralized security event ingestion and investigation |
+| Authentication monitoring        | Controlled test validated         | Two 4625 records; built-in rule 60122, severity 5        |
+| ServerM1 password policy and FIM  | Focused tests validated           | Minimum length 14; local added/modified/deleted events  |
 | Custom security detections       | Planned                           | Controlled detection engineering exercises             |
 | Production migration             | Pending                           | Cost and feasibility assessment                        |
 
-_Implementation status does not imply production readiness. Historical configurations and current operational settings are documented separately where they differ._
+_Earlier implementation records are retained as history; the current inventory below reflects the recovered environment._
 
 ---
 
@@ -93,54 +116,29 @@ Any future naming changes will be evaluated separately rather than introduced so
 
 The current monitoring implementation uses native Windows Event Forwarding together with Wazuh.
 
-```text
-                  Menarol Active Directory
-                         ServerM1
-                            |
-                  Group Policy Management
-                            |
-                            v
-                       COMPUTER01
-                    Windows Security Log
-                            |
-                            | Windows Event Forwarding
-                            v
-                        ServerM1
-                   Windows Event Collector
-                       ForwardedEvents
-                            |
-                            | Wazuh Windows Agent
-                            v
-                     MENAROL-WAZUH01
-                        Wazuh Manager
-                        Wazuh Indexer
-                        Wazuh Dashboard
-                            |
-                            v
-                 Security Event Investigation
-```
+**Event path:** COMPUTER01 → WEF → ServerM1/WEC → Wazuh agent 001 → MENAROL-WAZUH01.
+
+[View the Mermaid architecture diagram and monitoring scope](04-Network-Diagrams/README.md)
+
+SCA and FIM run locally on ServerM1; forwarded workstation events do not establish COMPUTER01 assessment or integrity-monitoring coverage.
 
 ### Verified Monitoring Capabilities
 
-- A source-initiated Windows Event Forwarding subscription has been configured.
-- Group Policy is used to distribute workstation event-forwarding settings.
-- Selected Windows Security events are collected centrally.
-- A Wazuh Windows agent is installed on the event collector.
-- The agent is configured to ingest the `ForwardedEvents` channel.
-- Events originating from `COMPUTER01` have been identified in Wazuh.
-- The original event source and the Wazuh collection agent can be distinguished during investigation.
-
-These results establish an operational event collection and monitoring pipeline within the PoC.
+- Group Policy configures source-initiated WEF on `COMPUTER01`.
+- `ServerM1` collects selected Security events in `ForwardedEvents`; agent 001 reads that channel.
+- Wazuh retains the original computer field, allowing workstation activity to be distinguished from the collector agent.
 
 ### Monitoring Limitations
 
 The following work remains outstanding:
 
-- Controlled failed-authentication and account-lockout detection testing.
+- Account-lockout detection testing (4740); controlled failed-logon testing (4625) is validated.
 - Privileged group membership change monitoring.
 - PowerShell activity monitoring and validation.
 - Custom Wazuh detection rules and alert tuning.
-- Documented detection test cases and investigation procedures.
+- Additional repeatable detection test cases and investigation procedures.
+- Unresolved SCA inconsistencies after reboot; reassessment passed.
+- GPO backup confirmation remains unverified.
 - Production logging, retention, and recovery requirements.
 - Resolution or formal acceptance of remaining WEF deployment automation limitations.
 
@@ -177,6 +175,9 @@ This phase remains active while additional detection engineering and monitoring 
 | [Phase 01](02-Implementation-Phases/Phase-01-Enterprise-Infrastructure-Foundation/README.md) | Enterprise infrastructure foundation            |
 | [Phase 02](02-Implementation-Phases/Phase-02-Enterprise-Endpoint-Integration/README.md)      | Windows endpoint integration and security       |
 | [Phase 03](02-Implementation-Phases/Phase-03-Enterprise-Security-Monitoring/README.md)       | Centralized security monitoring                 |
+| [Verification runbook](03-Scripts/README.md) | Read-only checks grouped by machine and verification status |
+| [Architecture diagram](04-Network-Diagrams/README.md) | Documented collection path and local assessment scope |
+| [Portfolio overview](05-GitHub-Portfolio/README.md) | Four validated exercises, evidence, and engineering lessons |
 | [Roadmap](ROADMAP.md)                                                                        | Implementation priorities and future milestones |
 | [Changelog](CHANGELOG.md)                                                                    | Project milestone and documentation history     |
 
@@ -186,8 +187,6 @@ Each implementation phase maintains supporting engineering records:
 - **Decisions.md:** Technical decisions and their rationale.
 - **Engineering-Journal.md:** Implementation activities, troubleshooting, and test results.
 - **Lessons-Learned.md:** Operational findings and engineering improvements.
-
-_Some document names and repository paths will be standardized during the publication cleanup. Existing links are retained until the corresponding files are moved or renamed._
 
 ---
 
@@ -212,7 +211,7 @@ A component is considered validated only when its expected behavior has been obs
 
 Menarol has not yet selected its production infrastructure or migration method.
 
-The final decision will consider total cost of ownership, business requirements, security, system compatibility, reliability, operational complexity, and long-term maintainability.
+Cost, compatibility, recovery, and operational support will inform that decision.
 
 The following approaches remain under consideration:
 
@@ -222,7 +221,7 @@ The following approaches remain under consideration:
 | Rebuild from validated configurations | Deploy production systems using the documented PoC design   |
 | Hybrid deployment                     | Migrate selected components while rebuilding others         |
 
-The lowest-cost option that satisfies the organization's operational and security requirements will be evaluated before a final deployment decision.
+These options still need a cost and feasibility assessment.
 
 ### Production Readiness Considerations
 
@@ -246,8 +245,8 @@ Successful PoC validation is one input into production planning, not a substitut
 ## Current Engineering Priorities
 
 1. Complete and publish the current infrastructure documentation.
-2. Add sanitized configuration and validation evidence.
-3. Validate failed-login and account-lockout monitoring.
+2. Review the integrated validation record and evidence; confirm the remaining GPO backup outcome.
+3. Evaluate account-lockout monitoring and investigate SCA assessment reliability after reboot.
 4. Test privileged identity and group membership change monitoring.
 5. Expand Windows auditing and PowerShell event visibility.
 6. Develop and validate Wazuh detection rules.
@@ -271,6 +270,4 @@ Configuration screenshots and supporting evidence will be reviewed before public
 
 **Environment:** Pre-Production Proof of Concept
 
-**Next technical milestone:** Controlled Windows authentication failure detection and validation through the WEF-to-Wazuh monitoring pipeline.
-
-The repository will continue to evolve as additional infrastructure components are implemented, validated, and documented.
+**Next technical milestone:** Evaluate account-lockout monitoring separately, investigate SCA reliability, and confirm GPO backup evidence.
